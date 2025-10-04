@@ -1,55 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portal Interdimensional</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Descubrimiento curioso</title>
+  <style>
+    body {
+      font-family: monospace;
+      text-align: center;
+      background: white;
+      color: black;
+      transition: background 2s, color 2s;
+      overflow: hidden;
+    }
+    .glitch {
+      font-size: 2em;
+      animation: glitch 0.3s infinite;
+    }
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 red; }
+      20% { text-shadow: -2px 0 blue; }
+      40% { text-shadow: 2px 2px lime; }
+      60% { text-shadow: -2px -2px purple; }
+      100% { text-shadow: 0 0 white; }
+    }
+  </style>
 </head>
 <body>
-  <div id="canvas">
-    <header class="topbar">
-      <h1>PORTAL — Interdimensional Gateway</h1>
-      <div class="controls">
-        <button id="toggle-scan">Escanear</button>
-        <button id="open-map">Mapa</button>
-        <button id="play-sound">🔊</button>
-      </div>
-    </header>
+  <h1>Noticia curiosa del día</h1>
+  <p>Parece un artículo normal, ¿verdad?</p>
+  <p><a href="#" id="link">Ver más información</a></p>
 
-    <main class="portal-grid" aria-label="Portales">
-      <!-- cada portal va a una subpágina -->
-      <a class="portal" href="glitch.html" target="_blank">
-        <div class="portal-inner">
-          <span class="portal-title">Dimensión Glitch</span>
-          <p>Distorsiones y mensajes ocultos</p>
-        </div>
-      </a>
+  <audio id="glitchSound" src="glitch.mp3" preload="auto"></audio>
 
-      <a class="portal" href="8bit.html" target="_blank">
-        <div class="portal-inner">
-          <span class="portal-title">Mundo 8-bit</span>
-          <p>Arcade retro — minijuegos</p>
-        </div>
-      </a>
+  <script>
+    document.getElementById("link").addEventListener("click", function(e) {
+      e.preventDefault();
 
-      <a class="portal" href="frozen.html" target="_blank">
-        <div class="portal-inner">
-          <span class="portal-title">Tiempo Congelado</span>
-          <p>Cuenta atrás eterna</p>
-        </div>
-      </a>
+      // Cambia pantalla a azul gradiente
+      document.body.style.background = "linear-gradient(to bottom, blue, black)";
+      document.body.style.color = "white";
+      document.body.innerHTML = "<h1 class='glitch'>zzzzzzzz...</h1>";
 
-      <button id="secret-button" class="portal secret">¿Portal secreto?</button>
-    </main>
+      let glitchSound = document.getElementById("glitchSound");
+      glitchSound.play().catch(()=>{});
 
-    <footer class="foot">
-      <p>Explora. Encuentra easter eggs. Comparte el enlace.</p>
-    </footer>
-  </div>
+      // Mensaje 1
+      setTimeout(() => {
+        document.body.innerHTML = "<h1>¿Qué quieres hacer aquí?</h1>";
+        let win2 = window.open("", "_blank", "width=500,height=300");
+        win2.document.write("<h1>¿Diste click solo para ver esto?</h1>");
+        
+        // Mensaje 2
+        setTimeout(() => {
+          win2.document.body.innerHTML = "<h1>Es curioso que hayas dado click aquí...<br>Has perdido tu tiempo.</h1>";
+          let win3 = window.open("", "_blank");
+          win3.document.write("<h1>Pon esta ventana en pantalla completa...</h1>");
+        }, 4000);
 
-  <audio id="ambient" loop src="ambient.mp3"></audio>
-
-  <script src="script.js"></script>
+      }, 3000);
+    });
+  </script>
 </body>
 </html>
