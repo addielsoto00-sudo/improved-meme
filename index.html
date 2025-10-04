@@ -30,35 +30,10 @@
   <p>Parece un artículo normal, ¿verdad?</p>
   <p><a href="#" id="link">Ver más información</a></p>
 
+  <!-- Sonido glitch -->
   <audio id="glitchSound" src="glitch.mp3" preload="auto"></audio>
 
-  <script>
-    document.getElementById("link").addEventListener("click", function(e) {
-      e.preventDefault();
-
-      // Cambia pantalla a azul gradiente
-      document.body.style.background = "linear-gradient(to bottom, blue, black)";
-      document.body.style.color = "white";
-      document.body.innerHTML = "<h1 class='glitch'>zzzzzzzz...</h1>";
-
-      let glitchSound = document.getElementById("glitchSound");
-      glitchSound.play().catch(()=>{});
-
-      // Mensaje 1
-      setTimeout(() => {
-        document.body.innerHTML = "<h1>¿Qué quieres hacer aquí?</h1>";
-        let win2 = window.open("", "_blank", "width=500,height=300");
-        win2.document.write("<h1>¿Diste click solo para ver esto?</h1>");
-        
-        // Mensaje 2
-        setTimeout(() => {
-          win2.document.body.innerHTML = "<h1>Es curioso que hayas dado click aquí...<br>Has perdido tu tiempo.</h1>";
-          let win3 = window.open("", "_blank");
-          win3.document.write("<h1>Pon esta ventana en pantalla completa...</h1>");
-        }, 4000);
-
-      }, 3000);
-    });
-  </script>
+  <!-- Conectar script externo -->
+  <script src="script.js"></script>
 </body>
 </html>
